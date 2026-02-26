@@ -1,0 +1,38 @@
+Build an RPG Character:
+
+def create_character(name, strength, intelligence, charisma):
+    if not isinstance(name, str):
+        return 'The character name should be a string'
+    if name == '':
+        return 'The character should have a name'
+    if len(name) > 10:
+        return 'The character name is too long'
+
+    if " " in name:
+        return 'The character name should not contain spaces'
+
+    if not isinstance(strength, int) or not isinstance(charisma, int) or not isinstance(intelligence, int):
+        return 'All stats should be integers'
+    if strength < 1 or charisma < 1 or intelligence < 1:
+        return 'All stats should be no less than 1'
+    if strength > 4 or charisma > 4 or intelligence > 4:
+        return 'All stats should be no more than 4'
+    if strength + intelligence + charisma != 7:
+        return 'The character should start with 7 points'
+
+    full_dot = '●●●●●●●●●●'
+    empty_dot = '○○○○○○○○○○'
+
+    STR_full = full_dot[:strength]
+    INT_full = full_dot[:intelligence]
+    CHA_full = full_dot[:charisma]
+
+    STR_empty = empty_dot[:(10 - strength)]
+    INT_empty = empty_dot[:(10 - intelligence)]
+    CHA_empty = empty_dot[:(10 - charisma)]
+
+    return name + '\nSTR ' + STR_full + STR_empty + '\nINT ' + INT_full + INT_empty + '\nCHA ' + CHA_full + CHA_empty
+
+
+result = create_character('ren', 4, 2, 1)
+print(result)
